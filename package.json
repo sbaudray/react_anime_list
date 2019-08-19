@@ -3,16 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/react-hooks": "^3.0.1",
     "@types/jest": "24.0.18",
     "@types/node": "12.7.2",
+    "@types/ramda": "^0.26.19",
     "@types/react": "16.9.2",
     "@types/react-dom": "16.8.5",
+    "apollo-boost": "^0.4.4",
+    "graphql": "^14.4.2",
+    "ramda": "^0.26.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.1",
     "typescript": "3.5.3"
   },
   "scripts": {
+    "apollo:generate": "apollo client:codegen --excludes=node_modules/ --includes=src/*.tsx --endpoint=https://graphql.anilist.co --target=typescript --tagName=gql --outputFlat=src/generated",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -32,5 +38,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "apollo": "^2.18.0"
   }
 }
