@@ -5,15 +5,6 @@ import ApolloClient, { gql } from "apollo-boost";
 import { ApolloProvider, useQuery } from "@apollo/react-hooks";
 import { AnimesQuery, AnimesQueryVariables } from "./generated/AnimesQuery";
 
-function debounce(func: Function, time: number) {
-  let tid: number;
-
-  return function(...args: any[]) {
-    clearTimeout(tid);
-    tid = window.setTimeout(() => func(...args), time);
-  };
-}
-
 const client = new ApolloClient({
   uri: "https://graphql.anilist.co"
 });
@@ -74,13 +65,27 @@ function AnimeList({ search }: AnimeListProps) {
   );
 }
 
+function useDebounce(value: any, time: number) {
+  const [debouncedValue, setDebouncedValue] = React.useState(value);
+
+  const tid = React.useRef(0);
+
+  React.useEffect(() => {
+    clearTimeout(tid.current);
+    tid.current = window.setTimeout(() => setDebouncedValue(value), time);
+  }, [value, time]);
+
+  return debouncedValue;
+}
+
 export default function App() {
   const [search, setSearch] = React.useState("");
+  const searchDebounced = useDebounce(search, 300);
 
   return (
     <ApolloProvider client={client}>
-      <SearchBox onChange={debounce(setSearch, 400)} />
-      <AnimeList search={search} />
+      <SearchBox value={search} onChange={setSearch} />
+      <AnimeList search={searchDebounced} />
     </ApolloProvider>
   );
 }
