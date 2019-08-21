@@ -3,10 +3,10 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: AnimesQuery
+// GraphQL query operation: AnimeResultsQuery
 // ====================================================
 
-export interface AnimesQuery_Page_media_title {
+export interface AnimeResultsQuery_Page_media_title {
   __typename: "MediaTitle";
   /**
    * The official english title
@@ -18,7 +18,7 @@ export interface AnimesQuery_Page_media_title {
   native: string | null;
 }
 
-export interface AnimesQuery_Page_media {
+export interface AnimeResultsQuery_Page_media {
   __typename: "Media";
   /**
    * The id of the media
@@ -27,18 +27,18 @@ export interface AnimesQuery_Page_media {
   /**
    * The official titles of the media in various languages
    */
-  title: AnimesQuery_Page_media_title | null;
+  title: AnimeResultsQuery_Page_media_title | null;
 }
 
-export interface AnimesQuery_Page {
+export interface AnimeResultsQuery_Page {
   __typename: "Page";
-  media: (AnimesQuery_Page_media | null)[] | null;
+  media: (AnimeResultsQuery_Page_media | null)[] | null;
 }
 
-export interface AnimesQuery {
-  Page: AnimesQuery_Page | null;
+export interface AnimeResultsQuery {
+  Page: AnimeResultsQuery_Page | null;
 }
 
-export interface AnimesQueryVariables {
+export interface AnimeResultsQueryVariables {
   search: string;
 }
